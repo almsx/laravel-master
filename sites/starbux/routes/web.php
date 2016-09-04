@@ -36,27 +36,42 @@ Route::get("/prueba/cafe", function () {
     return "ok";
 });
 
+Route::get("/cafe/nuevo/{tipo}/{nombre}/{tamano}/{precio}", function ($tipo, $nombre, $tamaño, $precio) {
+    $cafe = new App\Cafe;
+
+    $cafe->tipo = $tipo;
+    $cafe->nombre = $nombre;
+    $cafe->tamaño = $tamaño;
+    $cafe->precio = $precio;
+
+    $cafe->save();
+
+    return "ID: " . $cafe->id;
+});
+
 Route::get("/lista/cafe", function () {
-    $cafes = [
-        [ "tipo" => "Caliente", "nombre" => "latte",
-            "tamaño" => "Ch", "costo" => 48 ],
-        [ "tipo" => "Caliente", "nombre" => "latte",
-            "tamaño" => "Ch", "costo" => 48 ],
-        [ "tipo" => "Caliente", "nombre" => "latte",
-            "tamaño" => "Ch", "costo" => 48 ],
-        [ "tipo" => "Caliente", "nombre" => "latte",
-            "tamaño" => "Ch", "costo" => 48 ],
-        [ "tipo" => "Caliente", "nombre" => "latte",
-            "tamaño" => "Ch", "costo" => 48 ],
-        [ "tipo" => "Caliente", "nombre" => "latte",
-            "tamaño" => "Ch", "costo" => 48 ]
-    ];
+    // $cafes = [
+    //     [ "tipo" => "Caliente", "nombre" => "latte",
+    //         "tamaño" => "Ch", "costo" => 48 ],
+    //     [ "tipo" => "Caliente", "nombre" => "latte",
+    //         "tamaño" => "Ch", "costo" => 48 ],
+    //     [ "tipo" => "Caliente", "nombre" => "latte",
+    //         "tamaño" => "Ch", "costo" => 48 ],
+    //     [ "tipo" => "Caliente", "nombre" => "latte",
+    //         "tamaño" => "Ch", "costo" => 48 ],
+    //     [ "tipo" => "Caliente", "nombre" => "latte",
+    //         "tamaño" => "Ch", "costo" => 48 ],
+    //     [ "tipo" => "Caliente", "nombre" => "latte",
+    //         "tamaño" => "Ch", "costo" => 48 ]
+    // ];
 
     // $cafes = [];
 
     // foreach ($cafes as $cafe) {
     //     echo $cafe["tipo"];
     // }
+
+    $cafes = App\Cafe::all();
 
     return view("lista.cafe", [ "cafes" => $cafes ]);
 });

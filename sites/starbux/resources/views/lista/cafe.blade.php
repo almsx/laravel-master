@@ -22,7 +22,7 @@
 				<td>{{ $cafe["tipo"] }}</td>
 				<td>{{ $cafe["nombre"] }}</td>
 				<td>{{ $cafe["tamaño"] }}</td>
-				<td>{{ $cafe["costo"] }}</td>
+				<td>{{ $cafe["precio"] }}</td>
 			</tr>
 			@empty
 			<tr>
