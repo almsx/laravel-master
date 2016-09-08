@@ -91,3 +91,25 @@ Route::get('/perfil', function () {
 ~~~
 
 * Observe que debe existir el archivo `/resources/views/perfil.blade.php` y que los valores enviados en el diccionario serán los que se sustituyan en la plantilla. Con forme avance el curso se verán más opciones que tiene _blade_.
+* __Modelos Elocuentes y Base de Datos__: un modelo es una abstración de un conjunto de datos que representa entidades en nuestro sistema, por ejemplo, si tuvieramos a cargo un centro de salud pokemón necesitariamos almacenar en nuestro sistema los datos de un pokemón, los datos del entrenador, los datos de una consulta, los datos estadísticos o de salud y las relaciones entre estos. Para esto abstraemos cada una de las entidades en modelos que generalicen la descripción de las entidades. Por ejemplo:
+
+> __model__: Modelo que representa los datos de un pokemon
+
+~~~txt
+Pokemon:
+  Nombre
+  Tipo1
+  Tipo2
+  Salvaje?
+  Estatura
+  Peso
+  PoderAtaque
+  PoderDefensa
+  SaludMaxima
+  SaludActual
+  Sexo
+~~~
+
+* Podríamos alargar la lista de atributos tanto como quisieramos, pero seguiremos la filosofía de buscar el mínimo de atributos que representen un modelo, esto nos permitirá crear rápidamente prototipos funcionales que podamos incrementar poco a poco según se requiera, por ejemplo, el atributo _BatallasGanadas_ no nos interesa de momento, por lo que no es necesario incluirlo desde el principio y mejor hacer una migración cuando se requiera, lo cual se verá más adelante.
+* __Modelos Elocuentes__: Para que un modelo sea elocuente con la base de datos se siguen un conjunto de reglas que pueden modificarse para que el desarrollo sea rápido. Por cada modelo propuesto debe existir en la base de datos una tabla con el mismo nombre, en minúsculas y en plural (sufijo `s`), ejemplo si el modelo es `Pokemon` deberá existir una tabla llamada `pokemons`. Dicha tabla debe contener un campo llamado `id` autoincremental y marcado como llave primaria y dos campos de tipo `timestamp` llamado `created_at` y `updated_at`, sin embargo dichas convenciones se pueden deshabilitar si no queremos esto.
+* __Configurar la base de datos__:
